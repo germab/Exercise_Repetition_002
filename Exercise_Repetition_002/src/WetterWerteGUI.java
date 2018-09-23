@@ -1,3 +1,7 @@
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -42,7 +46,7 @@ public class WetterWerteGUI extends javax.swing.JFrame {
 
         jLabel1.setText("Eingabe");
 
-        lbTemperatur.setText("Temperatur: ");
+        lbTemperatur.setText("Temperatur: 10°");
 
         slTemperatur.setMajorTickSpacing(10);
         slTemperatur.setMaximum(40);
@@ -50,15 +54,31 @@ public class WetterWerteGUI extends javax.swing.JFrame {
         slTemperatur.setMinorTickSpacing(5);
         slTemperatur.setPaintLabels(true);
         slTemperatur.setPaintTicks(true);
+        slTemperatur.setValue(10);
+        slTemperatur.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                onTempChange(evt);
+            }
+        });
 
-        lbLuftfeuchtigkeit.setText("Luftfeuchtigkeit: ");
+        lbLuftfeuchtigkeit.setText("Luftfeuchtigkeit: 50%");
 
         slLuftfeuchtigkeit.setMajorTickSpacing(20);
         slLuftfeuchtigkeit.setMinorTickSpacing(10);
         slLuftfeuchtigkeit.setPaintLabels(true);
         slLuftfeuchtigkeit.setPaintTicks(true);
+        slLuftfeuchtigkeit.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                onLuftChange(evt);
+            }
+        });
 
-        btAdd.setText("jButton1");
+        btAdd.setText("Einfügen");
+        btAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btAddActionPerformed(evt);
+            }
+        });
 
         jLabel4.setText("Anzeige");
 
@@ -120,6 +140,24 @@ public class WetterWerteGUI extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void onTempChange(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_onTempChange
+        lbTemperatur.setText("Temperatur: "+slTemperatur.getValue()+"°");
+    }//GEN-LAST:event_onTempChange
+
+    private void btAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAddActionPerformed
+        int temp=slTemperatur.getValue();
+        int luft=slLuftfeuchtigkeit.getValue();
+        LocalDateTime zeit = LocalDateTime.now();
+        
+        WetterWert w = new WetterWert(temp,luft,zeit);
+        
+        bl.add(w);
+    }//GEN-LAST:event_btAddActionPerformed
+
+    private void onLuftChange(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_onLuftChange
+        lbLuftfeuchtigkeit.setText("Luftfeuchtigkeit: "+slLuftfeuchtigkeit.getValue()+"%");
+    }//GEN-LAST:event_onLuftChange
 
     /**
      * @param args the command line arguments

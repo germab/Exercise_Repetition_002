@@ -88,7 +88,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="lbTemperatur">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Temperatur: "/>
+        <Property name="text" type="java.lang.String" value="Temperatur: 10&#xb0;"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JSlider" name="slTemperatur">
@@ -99,11 +99,15 @@
         <Property name="minorTickSpacing" type="int" value="5"/>
         <Property name="paintLabels" type="boolean" value="true"/>
         <Property name="paintTicks" type="boolean" value="true"/>
+        <Property name="value" type="int" value="10"/>
       </Properties>
+      <Events>
+        <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="onTempChange"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="lbLuftfeuchtigkeit">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Luftfeuchtigkeit: "/>
+        <Property name="text" type="java.lang.String" value="Luftfeuchtigkeit: 50%"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JSlider" name="slLuftfeuchtigkeit">
@@ -113,11 +117,17 @@
         <Property name="paintLabels" type="boolean" value="true"/>
         <Property name="paintTicks" type="boolean" value="true"/>
       </Properties>
+      <Events>
+        <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="onLuftChange"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btAdd">
       <Properties>
-        <Property name="text" type="java.lang.String" value="jButton1"/>
+        <Property name="text" type="java.lang.String" value="Einf&#xfc;gen"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btAddActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel4">
       <Properties>
