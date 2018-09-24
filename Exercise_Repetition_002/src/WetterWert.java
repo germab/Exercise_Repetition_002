@@ -24,6 +24,25 @@ public class WetterWert {
         this.zeitpunkt = zeitpunkt;
     }
     
+    public WetterWert(String line){
+        String[] parts = line.split(",");
+        this.zeitpunkt = LocalDateTime.parse(parts[0]);
+        this.temperatur = Integer.parseInt(parts[1]);
+        this.luftfeuchtigkeit = Integer.parseInt(parts[2]);
+    }
+
+    public int getTemperatur() {
+        return temperatur;
+    }
+
+    public int getLuftfeuchtigkeit() {
+        return luftfeuchtigkeit;
+    }
+
+    public LocalDateTime getZeitpunkt() {
+        return zeitpunkt;
+    }
+    
     public String toString(){
         return String.format("%s - %d° - %d",zeitpunkt.format(dtf),temperatur,luftfeuchtigkeit)+"%\n";
     }   

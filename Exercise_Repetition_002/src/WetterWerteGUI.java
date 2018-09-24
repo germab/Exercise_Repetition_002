@@ -1,6 +1,9 @@
 
+import java.io.File;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -41,6 +44,11 @@ public class WetterWerteGUI extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         liAusgabe = new javax.swing.JList<>();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        miSave = new javax.swing.JMenuItem();
+        miLoad = new javax.swing.JMenuItem();
+        miExit = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -89,6 +97,36 @@ public class WetterWerteGUI extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(liAusgabe);
 
+        jMenu1.setText("Datei");
+
+        miSave.setText("Datei speichern");
+        miSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miSaveActionPerformed(evt);
+            }
+        });
+        jMenu1.add(miSave);
+
+        miLoad.setText("Datei Laden");
+        miLoad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miLoadActionPerformed(evt);
+            }
+        });
+        jMenu1.add(miLoad);
+
+        miExit.setText("Exit");
+        miExit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miExitActionPerformed(evt);
+            }
+        });
+        jMenu1.add(miExit);
+
+        jMenuBar1.add(jMenu1);
+
+        setJMenuBar(jMenuBar1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -131,7 +169,7 @@ public class WetterWerteGUI extends javax.swing.JFrame {
                         .addComponent(slLuftfeuchtigkeit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btAdd)
-                        .addContainerGap(38, Short.MAX_VALUE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(10, 10, 10)
                         .addComponent(jScrollPane1)
@@ -158,6 +196,30 @@ public class WetterWerteGUI extends javax.swing.JFrame {
     private void onLuftChange(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_onLuftChange
         lbLuftfeuchtigkeit.setText("Luftfeuchtigkeit: "+slLuftfeuchtigkeit.getValue()+"%");
     }//GEN-LAST:event_onLuftChange
+
+    private void miSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miSaveActionPerformed
+        JFileChooser chooser = new JFileChooser();
+        int ret = chooser.showOpenDialog(null);
+        if(ret == JFileChooser.APPROVE_OPTION)
+        {
+            File f = chooser.getSelectedFile();
+            bl.save(f);
+        }
+    }//GEN-LAST:event_miSaveActionPerformed
+
+    private void miLoadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miLoadActionPerformed
+        JFileChooser chooser = new JFileChooser();
+        int ret = chooser.showOpenDialog(null);
+        if(ret == JFileChooser.APPROVE_OPTION)
+        {
+            File f = chooser.getSelectedFile();
+            bl.load(f);
+        }
+    }//GEN-LAST:event_miLoadActionPerformed
+
+    private void miExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miExitActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_miExitActionPerformed
 
     /**
      * @param args the command line arguments
@@ -198,10 +260,15 @@ public class WetterWerteGUI extends javax.swing.JFrame {
     private javax.swing.JButton btAdd;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lbLuftfeuchtigkeit;
     private javax.swing.JLabel lbTemperatur;
     private javax.swing.JList<String> liAusgabe;
+    private javax.swing.JMenuItem miExit;
+    private javax.swing.JMenuItem miLoad;
+    private javax.swing.JMenuItem miSave;
     private javax.swing.JSlider slLuftfeuchtigkeit;
     private javax.swing.JSlider slTemperatur;
     // End of variables declaration//GEN-END:variables
